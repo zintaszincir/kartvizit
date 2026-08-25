@@ -1,0 +1,1141 @@
+/* =========================================================
+   ZİNTAŞ — DİJİTAL KARTVİZİT
+   Tema: #076eb5 + Beyaz
+   ========================================================= */
+
+
+/* =========================================================
+   01 — RESET / DEĞİŞKENLER
+   ========================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #076eb5;
+  --blue-dark: #05578f;
+  --blue-light: #eaf5fc;
+  --blue-soft: rgba(7,110,181,.08);
+  --blue-line: rgba(7,110,181,.16);
+
+  --white: #ffffff;
+  --white-soft: #f7fbfe;
+
+  --ink: #123047;
+  --text: #163247;
+  --muted: #6f7f8c;
+
+  --line: rgba(7,110,181,.12);
+  --line-hi: rgba(7,110,181,.20);
+
+  --r: 22px;
+  --pad: clamp(20px,5.5vw,32px);
+}
+
+
+/* =========================================================
+   02 — HTML / BODY
+   ========================================================= */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  font-family:
+    "Archivo",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(
+      120% 70% at 50% -10%,
+      rgba(7,110,181,.13),
+      transparent 60%
+    ),
+    radial-gradient(
+      90% 60% at 12% 110%,
+      rgba(7,110,181,.07),
+      transparent 62%
+    ),
+    #f4f9fc;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    clamp(14px,4vw,48px)
+    clamp(12px,4vw,24px);
+
+  padding-top:
+    calc(
+      clamp(14px,4vw,48px)
+      + env(safe-area-inset-top)
+    );
+
+  padding-bottom:
+    calc(
+      clamp(18px,4vw,48px)
+      + env(safe-area-inset-bottom)
+    );
+
+  position: relative;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   03 — ARKA PLAN IZGARA
+   ========================================================= */
+
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(7,110,181,.055) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(7,110,181,.055) 1px,
+      transparent 1px
+    );
+
+  background-size: 64px 64px;
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle at 50% 30%,
+      #000 0%,
+      transparent 72%
+    );
+
+  mask-image:
+    radial-gradient(
+      circle at 50% 30%,
+      #000 0%,
+      transparent 72%
+    );
+
+  opacity: .7;
+}
+
+
+/* =========================================================
+   04 — GRAIN / NOISE
+   ========================================================= */
+
+body::after {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  opacity: .025;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
+/* =========================================================
+   05 — ANA KART
+   ========================================================= */
+
+.card {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  max-width: 430px;
+
+  background:
+    linear-gradient(
+      168deg,
+      #ffffff 0%,
+      #ffffff 70%,
+      #f7fbfe 100%
+    );
+
+  border:
+    1px solid rgba(7,110,181,.16);
+
+  border-radius: var(--r);
+
+  padding:
+    0
+    var(--pad)
+    clamp(20px,5vw,28px);
+
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 30px 70px -35px rgba(7,110,181,.25),
+    0 8px 30px rgba(20,60,90,.08);
+
+  overflow: hidden;
+
+  display: grid;
+
+  grid-template-columns: 1fr;
+}
+
+
+/* =========================================================
+   06 — KART ÜST MAVİ ÇİZGİ
+   ========================================================= */
+
+.card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--blue-dark),
+      var(--blue),
+      #ffffff,
+      var(--blue),
+      var(--blue-dark)
+    );
+
+  background-size: 220% 100%;
+
+  animation:
+    sweep 9s linear infinite;
+}
+
+@keyframes sweep {
+  to {
+    background-position: 220% 0;
+  }
+}
+
+
+/* =========================================================
+   07 — MARKA HEADER
+   ========================================================= */
+
+.brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding:
+    clamp(20px,5vw,26px)
+    0
+    clamp(16px,4vw,22px);
+}
+
+.mark {
+  font-size: 12px;
+
+  letter-spacing: .34em;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  color: var(--blue);
+
+  position: relative;
+}
+
+.mark::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -4px;
+
+  width: 100%;
+  height: 1px;
+
+  background: var(--blue);
+}
+
+.hair {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--line-hi),
+      transparent
+    );
+}
+
+.kicker {
+  font-size: 9.5px;
+
+  letter-spacing: .24em;
+
+  color: var(--muted);
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   08 — ARKA PLAN MONOGRAM
+   ========================================================= */
+
+.ghost {
+  position: absolute;
+
+  right: -6px;
+  top: 32px;
+
+  font-family:
+    "Fraunces",
+    Georgia,
+    serif;
+
+  font-weight: 600;
+
+  font-size:
+    clamp(150px,44vw,215px);
+
+  line-height: .72;
+
+  letter-spacing: -.04em;
+
+  color:
+    rgba(7,110,181,.055);
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   09 — KİŞİ BİLGİLERİ
+   ========================================================= */
+
+.name {
+  font-family:
+    "Fraunces",
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-variation-settings:
+    "opsz" 120,
+    "SOFT" 0,
+    "WONK" 1;
+
+  margin: 0;
+
+  line-height: .94;
+
+  letter-spacing: -.02em;
+}
+
+.given {
+  display: block;
+
+  font-size:
+    clamp(27px,8.4vw,38px);
+
+  font-weight: 300;
+
+  color: var(--ink);
+}
+
+.family {
+  display: block;
+
+  font-size:
+    clamp(28px,8.8vw,40px);
+
+  font-weight: 600;
+
+  color: var(--blue);
+
+  overflow-wrap: break-word;
+}
+
+.role {
+  margin:
+    14px
+    0
+    0;
+
+  font-size:
+    clamp(10px,2.9vw,11px);
+
+  letter-spacing: .18em;
+
+  text-transform: uppercase;
+
+  color: var(--muted);
+
+  font-weight: 500;
+
+  max-width: 30ch;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   10 — AYIRICI
+   ========================================================= */
+
+.sep {
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--line-hi) 18%,
+      var(--line-hi) 82%,
+      transparent
+    );
+
+  margin:
+    clamp(18px,5vw,24px)
+    0
+    2px;
+}
+
+
+/* =========================================================
+   11 — CTA / BUTONLAR
+   ========================================================= */
+
+.cta {
+  margin-top:
+    clamp(18px,5vw,22px);
+}
+
+.btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 52px;
+
+  padding:
+    15px
+    18px;
+
+  border-radius: 14px;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  letter-spacing: .05em;
+
+  border:
+    1px solid var(--line-hi);
+
+  background: #ffffff;
+
+  color: var(--blue);
+
+  transition:
+    transform .2s ease,
+    background .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.btn .ico {
+  color: currentColor;
+
+  width: 18px;
+  height: 18px;
+
+  flex: none;
+}
+
+
+/* =========================================================
+   12 — ANA MAVİ BUTON
+   ========================================================= */
+
+.btn-primary {
+  width: 100%;
+
+  font-size: 14px;
+
+  min-height: 58px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0b7cc7,
+      var(--blue)
+    );
+
+  border-color: transparent;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 14px 30px -14px
+    rgba(7,110,181,.55);
+}
+
+.btn-primary .ico {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* =========================================================
+   13 — BUTON AÇIKLAMASI
+   ========================================================= */
+
+.hint {
+  margin:
+    11px
+    2px
+    0;
+
+  font-size: 11px;
+
+  line-height: 1.55;
+
+  color: var(--muted);
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   14 — KÜÇÜK BUTONLAR
+   ========================================================= */
+
+.mini {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 12px;
+}
+
+.mini .btn {
+  flex: 1;
+
+  min-height: 48px;
+
+  padding:
+    12px
+    10px;
+
+  font-size: 12px;
+
+  letter-spacing: .04em;
+}
+
+
+/* =========================================================
+   15 — İKİNCİL / GHOST BUTON
+   ========================================================= */
+
+.btn-ghost {
+  background: #ffffff;
+
+  border-color:
+    rgba(7,110,181,.20);
+
+  color: var(--blue);
+}
+
+.btn-ghost:hover {
+  background:
+    var(--blue-light);
+
+  border-color:
+    rgba(7,110,181,.45);
+
+  color: var(--blue-dark);
+}
+
+
+/* =========================================================
+   16 — İLETİŞİM SATIRLARI
+   ========================================================= */
+
+.rows {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  min-height: 52px;
+
+  padding:
+    14px
+    2px;
+
+  text-decoration: none;
+
+  color: inherit;
+
+  border-bottom:
+    1px solid var(--line);
+
+  position: relative;
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    padding-left .35s
+    cubic-bezier(.22,1,.36,1);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+
+/* =========================================================
+   17 — İLETİŞİM SATIRI HOVER
+   ========================================================= */
+
+.row::after {
+  content: "";
+
+  position: absolute;
+
+  left:
+    calc(-1 * var(--pad));
+
+  right:
+    calc(-1 * var(--pad));
+
+  top: 0;
+  bottom: 0;
+
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7,110,181,.07),
+      transparent 70%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity .3s ease;
+}
+
+.row:focus-visible {
+  outline: none;
+
+  padding-left: 8px;
+}
+
+.row:focus-visible::after {
+  opacity: 1;
+}
+
+.row:active::after {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   18 — İLETİŞİM İKONLARI
+   ========================================================= */
+
+.ico {
+  width: 19px;
+  height: 19px;
+
+  flex: none;
+
+  color: var(--blue);
+
+  opacity: .95;
+}
+
+
+/* =========================================================
+   19 — İLETİŞİM METİNLERİ
+   ========================================================= */
+
+.row .txt {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.row .lbl {
+  font-size: 9.5px;
+
+  letter-spacing: .2em;
+
+  text-transform: uppercase;
+
+  color: var(--muted);
+}
+
+.row .val {
+  font-size:
+    clamp(14px,4vw,15px);
+
+  letter-spacing: .01em;
+
+  color: var(--ink);
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   20 — SAĞ OK
+   ========================================================= */
+
+.row .go {
+  margin-left: auto;
+
+  width: 15px;
+  height: 15px;
+
+  color: var(--blue);
+
+  opacity: 0;
+
+  transform:
+    translateX(-6px);
+
+  transition:
+    .35s
+    cubic-bezier(.22,1,.36,1);
+}
+
+.row:focus-visible .go {
+  opacity: .75;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   21 — FOOTER
+   ========================================================= */
+
+.foot {
+  margin-top:
+    clamp(16px,4vw,22px);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+.foot a,
+.foot span {
+  font-size: 9.5px;
+
+  letter-spacing: .2em;
+
+  text-transform: uppercase;
+
+  color: var(--muted);
+
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   22 — ANİMASYON
+   ========================================================= */
+
+.reveal {
+  opacity: 0;
+
+  transform:
+    translateY(14px);
+
+  animation:
+    rise
+    .85s
+    cubic-bezier(.22,1,.36,1)
+    forwards;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+
+    transform: none;
+  }
+}
+
+
+/* =========================================================
+   23 — MASAÜSTÜ HOVER
+   ========================================================= */
+
+@media (hover:hover) and (pointer:fine) {
+
+  .row:hover {
+    padding-left: 8px;
+  }
+
+  .row:hover::after {
+    opacity: 1;
+  }
+
+  .row:hover .go {
+    opacity: .75;
+
+    transform: none;
+  }
+
+  .btn:hover {
+    transform:
+      translateY(-2px);
+  }
+
+  .btn-ghost:hover {
+    background: var(--blue-light);
+
+    border-color:
+      rgba(7,110,181,.35);
+  }
+
+  .foot a:hover {
+    color: var(--blue);
+  }
+}
+
+
+/* =========================================================
+   24 — DOKUNMATİK BUTON
+   ========================================================= */
+
+.btn:active {
+  transform:
+    scale(.985);
+}
+
+
+/* =========================================================
+   25 — ÇOK KÜÇÜK TELEFONLAR
+   ========================================================= */
+
+@media (max-width:360px) {
+
+  :root {
+    --pad: 18px;
+    --r: 18px;
+  }
+
+  .kicker {
+    display: none;
+  }
+
+  .mini .btn {
+    font-size: 11px;
+
+    gap: 7px;
+  }
+
+  .row {
+    gap: 12px;
+  }
+}
+
+
+/* =========================================================
+   26 — TABLET
+   ========================================================= */
+
+@media (min-width:600px) {
+
+  .card {
+    max-width: 500px;
+  }
+
+  .mini {
+    gap: 12px;
+  }
+}
+
+
+/* =========================================================
+   27 — MASAÜSTÜ / İKİ KOLON
+   ========================================================= */
+
+@media (min-width:900px) {
+
+  .card {
+    max-width: 900px;
+
+    grid-template-columns:
+      minmax(0,1fr)
+      minmax(0,1.05fr);
+
+    column-gap:
+      clamp(36px,5vw,60px);
+
+    align-items: start;
+
+    padding-bottom:
+      clamp(24px,3vw,32px);
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+
+  .identity {
+    padding:
+      clamp(6px,2vw,18px)
+      0
+      0;
+  }
+
+  .given {
+    font-size:
+      clamp(38px,3.6vw,46px);
+  }
+
+  .family {
+    font-size:
+      clamp(40px,3.9vw,50px);
+  }
+
+  .role {
+    margin-top: 20px;
+
+    font-size: 11px;
+  }
+
+  .channels {
+    padding-top: 6px;
+  }
+
+  .channels .sep {
+    margin-top: 0;
+  }
+
+  .ghost {
+    font-size: 230px;
+
+    right: auto;
+
+    left:
+      clamp(180px,22vw,300px);
+
+    top: 120px;
+  }
+
+  .foot {
+    grid-column: 1 / -1;
+
+    margin-top: 26px;
+
+    border-top:
+      1px solid var(--line);
+
+    padding-top: 18px;
+  }
+
+  .hint {
+    text-align: left;
+  }
+}
+
+
+/* =========================================================
+   28 — YATAY TELEFON
+   ========================================================= */
+
+@media (
+  max-height:520px
+) and (
+  orientation:landscape
+) {
+
+  body {
+    padding-block: 14px;
+  }
+
+  .brand {
+    padding:
+      16px
+      0
+      12px;
+  }
+
+  .given {
+    font-size: 24px;
+  }
+
+  .family {
+    font-size: 26px;
+  }
+
+  .role {
+    margin-top: 10px;
+  }
+
+  .row {
+    min-height: 46px;
+
+    padding:
+      10px
+      2px;
+  }
+
+  .btn-primary {
+    min-height: 50px;
+  }
+
+  .ghost {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   29 — YATAY TELEFON + GENİŞ EKRAN
+   ========================================================= */
+
+@media (
+  min-width:700px
+) and (
+  max-height:520px
+) and (
+  orientation:landscape
+) {
+
+  .card {
+    max-width: 820px;
+
+    grid-template-columns:
+      minmax(0,1fr)
+      minmax(0,1.05fr);
+
+    column-gap: 36px;
+
+    padding-bottom: 18px;
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+
+  .foot {
+    grid-column: 1 / -1;
+
+    margin-top: 14px;
+
+    border-top:
+      1px solid var(--line);
+
+    padding-top: 12px;
+  }
+
+  .channels .sep {
+    display: none;
+  }
+
+  .hint {
+    text-align: left;
+  }
+}
+
+
+/* =========================================================
+   30 — REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion:reduce) {
+
+  .reveal {
+    animation: none;
+
+    opacity: 1;
+
+    transform: none;
+  }
+
+  .card::before {
+    animation: none;
+  }
+
+  * {
+    transition-duration: .01ms !important;
+  }
+}

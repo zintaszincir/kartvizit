@@ -3,296 +3,148 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
 <title>ZİNTAŞ — Dijital Kartvizitler</title>
+
 <meta name="description" content="ZİNTAŞ ekibinin dijital kartvizitleri.">
-<meta name="theme-color" content="#0b0c0e">
+<meta name="theme-color" content="#076eb5">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,600&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0c0e'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23d8b26a' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
-<style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23076eb5'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23ffffff' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
 
-*,*::before,*::after{box-sizing:border-box}
-:root{
-  --ink:#0b0c0e;
-  --plate:#15171b;
-  --plate-2:#101216;
-  --line:rgba(255,255,255,.09);
-  --line-hi:rgba(255,255,255,.16);
-  --text:#e9ebef;
-  --muted:#8d939d;
-  --brass:#d8b26a;
-  --brass-dim:#a5813c;
-  --sheen:linear-gradient(100deg,#7a5c25 0%,#f3ddab 28%,#c79a4a 48%,#6d5222 72%,#e6cd97 100%);
-  --r:22px;
-  --pad:clamp(20px,5.5vw,32px);
-}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;min-height:100vh;min-height:100dvh;
-  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(120% 70% at 50% -10%,rgba(216,178,106,.10),transparent 60%),
-    radial-gradient(90% 60% at 12% 110%,rgba(120,150,180,.08),transparent 62%),
-    var(--ink);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:clamp(14px,4vw,48px) clamp(12px,4vw,24px);
-  padding-top:calc(clamp(14px,4vw,48px) + env(safe-area-inset-top));
-  padding-bottom:calc(clamp(18px,4vw,48px) + env(safe-area-inset-bottom));
-  position:relative;overflow-x:hidden;
-}
-/* ince kazima izgara + grain */
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:64px 64px;
-  -webkit-mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 72%);
-  mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 72%);
-  opacity:.5;
-}
-body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.card{
-  position:relative;z-index:2;width:100%;max-width:430px;
-  background:linear-gradient(168deg,var(--plate) 0%,var(--plate-2) 58%,#0d0f12 100%);
-  border:1px solid var(--line-hi);border-radius:var(--r);
-  padding:0 var(--pad) clamp(20px,5vw,28px);
-  box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 40px 80px -40px rgba(0,0,0,.9),0 2px 30px rgba(0,0,0,.5);
-  overflow:hidden;
-  display:grid;grid-template-columns:1fr;
-}
-/* metalik ust kenar */
-.card::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--sheen);background-size:220% 100%;
-  animation:sweep 9s linear infinite;
-}
-@keyframes sweep{to{background-position:220% 0}}
-
-.brand{display:flex;align-items:center;gap:14px;padding:clamp(20px,5vw,26px) 0 clamp(16px,4vw,22px)}
-.mark{
-  font-size:12px;letter-spacing:.34em;font-weight:600;white-space:nowrap;
-  background:var(--sheen);background-size:200% 100%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:sweep 9s linear infinite;
-}
-.hair{flex:1;height:1px;background:linear-gradient(90deg,var(--line-hi),transparent)}
-.kicker{font-size:9.5px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
-
-.ghost{
-  position:absolute;right:-6px;top:32px;
-  font-family:"Fraunces",Georgia,serif;font-weight:600;
-  font-size:clamp(150px,44vw,215px);line-height:.72;letter-spacing:-.04em;
-  color:rgba(255,255,255,.028);pointer-events:none;user-select:none;
-}
-.name{
-  font-family:"Fraunces",Georgia,"Times New Roman",serif;
-  font-variation-settings:"opsz" 120,"SOFT" 0,"WONK" 1;
-  margin:0;line-height:.94;letter-spacing:-.02em;
-}
-.given{display:block;font-size:clamp(27px,8.4vw,38px);font-weight:300;color:#f2f4f7}
-.family{
-  display:block;font-size:clamp(28px,8.8vw,40px);font-weight:600;
-  background:var(--sheen);background-size:200% 100%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:sweep 9s linear infinite;
-  overflow-wrap:break-word;
-}
-.role{
-  margin:14px 0 0;font-size:clamp(10px,2.9vw,11px);letter-spacing:.18em;text-transform:uppercase;
-  color:var(--muted);font-weight:500;max-width:30ch;line-height:1.7;
-}
-.sep{height:1px;background:linear-gradient(90deg,transparent,var(--line-hi) 18%,var(--line-hi) 82%,transparent);margin:clamp(18px,5vw,24px) 0 2px}
-
-/* ---- birincil aksiyon: rehbere ekle ---- */
-.cta{margin-top:clamp(18px,5vw,22px)}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  min-height:52px;padding:15px 18px;border-radius:14px;
-  text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent;
-  font-family:inherit;font-size:13px;font-weight:600;letter-spacing:.05em;
-  border:1px solid var(--line-hi);background:transparent;color:var(--text);
-  transition:transform .2s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease;
-}
-.btn .ico{color:currentColor;width:18px;height:18px;flex:none}
-.btn-primary{
-  width:100%;font-size:14px;min-height:58px;
-  background:linear-gradient(160deg,#e5c684,#b98b3e);border-color:transparent;color:#20180a;
-  box-shadow:0 14px 30px -14px rgba(216,178,106,.9);
-}
-.btn-primary .ico{width:20px;height:20px}
-.hint{
-  margin:11px 2px 0;font-size:11px;line-height:1.55;color:var(--muted);text-align:center;
-}
-.mini{display:flex;gap:10px;margin-top:12px}
-.mini .btn{flex:1;min-height:48px;padding:12px 10px;font-size:12px;letter-spacing:.04em}
-
-/* ---- iletisim satirlari ---- */
-.rows{display:flex;flex-direction:column}
-.row{
-  display:flex;align-items:center;gap:15px;min-height:52px;padding:14px 2px;
-  text-decoration:none;color:inherit;border-bottom:1px solid var(--line);
-  position:relative;-webkit-tap-highlight-color:transparent;
-  transition:padding-left .35s cubic-bezier(.22,1,.36,1);
-}
-.row:last-child{border-bottom:0}
-.row::after{
-  content:"";position:absolute;left:calc(-1 * var(--pad));right:calc(-1 * var(--pad));top:0;bottom:0;z-index:-1;
-  background:linear-gradient(90deg,rgba(216,178,106,.10),transparent 70%);
-  opacity:0;transition:opacity .3s ease;
-}
-.row:focus-visible{outline:none;padding-left:8px}
-.row:focus-visible::after{opacity:1}
-.row:active::after{opacity:1}
-.ico{width:19px;height:19px;flex:none;color:var(--brass);opacity:.9}
-.row .txt{display:flex;flex-direction:column;gap:3px;min-width:0}
-.row .lbl{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.row .val{font-size:clamp(14px,4vw,15px);letter-spacing:.01em;color:var(--text);overflow-wrap:anywhere}
-.row .go{margin-left:auto;width:15px;height:15px;color:var(--muted);opacity:0;transform:translateX(-6px);transition:.35s cubic-bezier(.22,1,.36,1)}
-.row:focus-visible .go{opacity:.75;transform:none}
-
-.foot{margin-top:clamp(16px,4vw,22px);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.foot a,.foot span{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none}
-
-.reveal{opacity:0;transform:translateY(14px);animation:rise .85s cubic-bezier(.22,1,.36,1) forwards}
-@keyframes rise{to{opacity:1;transform:none}}
-
-/* ---- isaretleme cihazi olan ekranlar (masaustu) ---- */
-@media (hover:hover) and (pointer:fine){
-  .row:hover{padding-left:8px}
-  .row:hover::after{opacity:1}
-  .row:hover .go{opacity:.75;transform:none}
-  .btn:hover{transform:translateY(-2px)}
-  .btn-ghost:hover{background:rgba(255,255,255,.05);border-color:var(--brass-dim)}
-  .foot a:hover{color:var(--brass)}
-}
-/* dokunmatikte basili tutma geri bildirimi */
-.btn:active{transform:scale(.985)}
-
-/* ---- cok kucuk telefonlar ---- */
-@media (max-width:360px){
-  :root{--pad:18px;--r:18px}
-  .kicker{display:none}
-  .mini .btn{font-size:11px;gap:7px}
-  .row{gap:12px}
-}
-
-/* ---- tablet / genis telefon ---- */
-@media (min-width:600px){
-  .card{max-width:500px}
-  .mini{gap:12px}
-}
-
-/* ---- masaustu: iki kolon ---- */
-@media (min-width:900px){
-  .card{
-    max-width:900px;
-    grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
-    column-gap:clamp(36px,5vw,60px);
-    align-items:start;
-    padding-bottom:clamp(24px,3vw,32px);
-  }
-  .brand{grid-column:1/-1}
-  .identity{padding:clamp(6px,2vw,18px) 0 0}
-  .given{font-size:clamp(38px,3.6vw,46px)}
-  .family{font-size:clamp(40px,3.9vw,50px)}
-  .role{margin-top:20px;font-size:11px}
-  .channels{padding-top:6px}
-  .channels .sep{margin-top:0}
-  .ghost{font-size:230px;right:auto;left:clamp(180px,22vw,300px);top:120px}
-  .foot{grid-column:1/-1;margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
-  .hint{text-align:left}
-}
-
-/* ---- yatay telefon: dikeyde yer kazan ---- */
-@media (max-height:520px) and (orientation:landscape){
-  body{padding-block:14px}
-  .brand{padding:16px 0 12px}
-  .given{font-size:24px}.family{font-size:26px}
-  .role{margin-top:10px}
-  .row{min-height:46px;padding:10px 2px}
-  .btn-primary{min-height:50px}
-  .ghost{display:none}
-}
-/* yatay telefon + yeterli genislik: iki kolona gecerek tek ekrana sigdir */
-@media (min-width:700px) and (max-height:520px) and (orientation:landscape){
-  .card{
-    max-width:820px;
-    grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
-    column-gap:36px;padding-bottom:18px;
-  }
-  .brand{grid-column:1/-1}
-  .foot{grid-column:1/-1;margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
-  .channels .sep{display:none}
-  .hint{text-align:left}
-}
-
-@media (prefers-reduced-motion:reduce){
-  .reveal{animation:none;opacity:1;transform:none}
-  .card::before,.mark,.family{animation:none}
-  *{transition-duration:.01ms!important}
-}
-
-.card{max-width:480px;display:block;padding-bottom:clamp(18px,5vw,26px)}
-.lede{font-family:"Fraunces",Georgia,serif;font-weight:300;font-size:clamp(26px,7.4vw,34px);line-height:1.06;letter-spacing:-.02em;margin:0 0 10px;color:#f2f4f7}
-.lede b{font-weight:600;background:var(--sheen);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{font-size:12.5px;line-height:1.7;color:var(--muted);margin:0 0 4px;max-width:38ch}
-.person{display:flex;align-items:center;gap:15px;min-height:64px;padding:17px 2px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line);position:relative;-webkit-tap-highlight-color:transparent;transition:padding-left .35s cubic-bezier(.22,1,.36,1)}
-.person:last-of-type{border-bottom:0}
-.person::after{content:"";position:absolute;left:calc(-1 * var(--pad));right:calc(-1 * var(--pad));top:0;bottom:0;z-index:-1;background:linear-gradient(90deg,rgba(216,178,106,.10),transparent 70%);opacity:0;transition:opacity .3s ease}
-.person:focus-visible{outline:none;padding-left:8px}
-.person:focus-visible::after,.person:active::after{opacity:1}
-.mono{width:46px;height:46px;flex:none;border-radius:12px;display:grid;place-items:center;border:1px solid var(--line-hi);font-family:"Fraunces",Georgia,serif;font-size:15px;color:var(--brass);background:rgba(255,255,255,.03)}
-.pn{font-size:clamp(15px,4.2vw,16px);letter-spacing:.01em;display:block}
-.pt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px;display:block;line-height:1.5}
-.person .go{margin-left:auto;width:15px;height:15px;color:var(--muted);opacity:0;transform:translateX(-6px);transition:.35s cubic-bezier(.22,1,.36,1)}
-.person:focus-visible .go{opacity:.75;transform:none}
-.foot a{text-transform:none;letter-spacing:.1em;font-size:10.5px}
-@media (hover:hover) and (pointer:fine){
-  .person:hover{padding-left:8px}
-  .person:hover::after{opacity:1}
-  .person:hover .go{opacity:.75;transform:none}
-}
-@media (min-width:900px){
-  .card{max-width:560px}
-  .foot{border-top:1px solid var(--line);padding-top:18px}
-}
-@media (max-width:360px){.mono{width:40px;height:40px;font-size:13px}}
-</style>
 </head>
+
 <body>
 <article class="card">
   <header class="brand reveal" style="animation-delay:.05s">
     <span class="mark">ZİNTAŞ</span>
     <span class="hair"></span>
-    <span class="kicker">Kartvizit Dizini</span>
+    <span class="kicker">
+      Kartvizit Dizini
+    </span>
   </header>
-  <h1 class="lede reveal" style="animation-delay:.12s">Dijital<br><b>Kartvizitler</b></h1>
-  <p class="sub reveal" style="animation-delay:.18s">Kartı açın, tek dokunuşla rehberinize ekleyin.</p>
+  <h1 class="lede reveal" style="animation-delay:.12s">
+    Dijital<br>
+    <b>Kartvizitler</b>
+  </h1>
+  <p class="sub reveal" style="animation-delay:.18s">
+    Kartı açın, tek dokunuşla rehberinize ekleyin.
+  </p>
   <div class="sep reveal" style="animation-delay:.22s"></div>
   <nav>
-    <a class="person reveal" style="animation-delay:.28s" href="melik-koray-uster.html">
-      <span class="mono">MK</span>
-      <span><span class="pn">Melik Koray ÜSTER</span><span class="pt">Yönetim Kurulu Üyesi</span></span>
-      <svg class="ico go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 6 6 6-6 6"/></svg>
+    <a
+      class="person reveal"
+      style="animation-delay:.28s"
+      href="melik-koray-uster.html"
+    >
+      <span class="mono">
+        MK
+      </span>
+      <span>
+        <span class="pn">
+          Melik Koray ÜSTER
+        </span>
+        <span class="pt">
+          Yönetim Kurulu Üyesi
+        </span>
+      </span>
+      <svg
+        class="ico go"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 12h13"/>
+        <path d="m12 6 6 6-6 6"/>
+      </svg>
     </a>
-    <a class="person reveal" style="animation-delay:.35s" href="figen-kusoglu.html">
-      <span class="mono">FK</span>
-      <span><span class="pn">Figen KUŞOĞLU</span><span class="pt">Yurtiçi Satış ve Pazarlama Müdürü</span></span>
-      <svg class="ico go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 6 6 6-6 6"/></svg>
+    <a
+      class="person reveal"
+      style="animation-delay:.35s"
+      href="figen-kusoglu.html"
+    >
+      <span class="mono">
+        FK
+      </span>
+      <span>
+        <span class="pn">
+          Figen KUŞOĞLU
+        </span>
+        <span class="pt">
+          Yurtiçi Satış ve Pazarlama Müdürü
+        </span>
+      </span>
+      <svg
+        class="ico go"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 12h13"/>
+        <path d="m12 6 6 6-6 6"/>
+      </svg>
+
     </a>
-    <a class="person reveal" style="animation-delay:.42s" href="talha-donmez.html">
-      <span class="mono">TD</span>
-      <span><span class="pn">Talha DÖNMEZ</span><span class="pt">Yurtiçi Satış ve Pazarlama Temsilcisi</span></span>
-      <svg class="ico go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 6 6 6-6 6"/></svg>
+    <a
+      class="person reveal"
+      style="animation-delay:.42s"
+      href="talha-donmez.html"
+    >
+      <span class="mono">
+        TD
+      </span>
+      <span>
+        <span class="pn">
+          Talha DÖNMEZ
+        </span>
+        <span class="pt">
+          Yurtiçi Satış ve Pazarlama Temsilcisi
+        </span>
+      </span>
+      <svg
+        class="ico go"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 12h13"/>
+        <path d="m12 6 6 6-6 6"/>
+      </svg>
     </a>
   </nav>
-  <footer class="foot reveal" style="animation-delay:.55s">
-    <a href="https://www.zintas.com" target="_blank" rel="noopener">www.zintas.com</a>
-    <a href="https://shop.zintas.com" target="_blank" rel="noopener">shop.zintas.com</a>
+  <footer
+    class="foot reveal"
+    style="animation-delay:.55s"
+  >
+    <a
+      href="https://www.zintas.com"
+      target="_blank"
+      rel="noopener"
+    >
+      www.zintas.com
+    </a>
+    <a
+      href="https://shop.zintas.com"
+      target="_blank"
+      rel="noopener"
+    >
+      shop.zintas.com
+    </a>
   </footer>
 </article>
 </body>

@@ -1,0 +1,617 @@
+*,*::before,*::after{
+  box-sizing:border-box;
+}
+
+:root{
+  --blue:#076eb5;
+  --blue-dark:#05588f;
+  --blue-deep:#034b7a;
+
+  --blue-light:#e8f4fb;
+  --blue-soft:#f3f9fd;
+
+  --ink:#f5f9fc;
+  --plate:#ffffff;
+  --plate-2:#f8fbfd;
+
+  --line:rgba(7,110,181,.10);
+  --line-hi:rgba(7,110,181,.18);
+
+  --text:#173042;
+  --muted:#718494;
+
+  --sheen:linear-gradient(
+    100deg,
+    #05588f 0%,
+    #076eb5 28%,
+    #2b8bc8 48%,
+    #076eb5 72%,
+    #4aa4d6 100%
+  );
+
+  --r:22px;
+  --pad:clamp(20px,5.5vw,32px);
+}
+
+html{
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  min-height:100dvh;
+
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+  color:var(--text);
+
+  background:
+    radial-gradient(
+      120% 70% at 50% -10%,
+      rgba(7,110,181,.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      90% 60% at 12% 110%,
+      rgba(7,110,181,.07),
+      transparent 62%
+    ),
+    var(--ink);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  padding:
+    clamp(14px,4vw,48px)
+    clamp(12px,4vw,24px);
+
+  padding-top:
+    calc(
+      clamp(14px,4vw,48px) +
+      env(safe-area-inset-top)
+    );
+
+  padding-bottom:
+    calc(
+      clamp(18px,4vw,48px) +
+      env(safe-area-inset-bottom)
+    );
+
+  position:relative;
+  overflow-x:hidden;
+}
+
+
+/* Izgara */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+
+  background-image:
+    linear-gradient(
+      var(--line) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      var(--line) 1px,
+      transparent 1px
+    );
+
+  background-size:64px 64px;
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle at 50% 30%,
+      #000 0%,
+      transparent 72%
+    );
+
+  mask-image:
+    radial-gradient(
+      circle at 50% 30%,
+      #000 0%,
+      transparent 72%
+    );
+
+  opacity:.5;
+}
+
+
+/* Grain */
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  opacity:.025;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
+/* Kart */
+
+.card{
+  position:relative;
+  z-index:2;
+
+  width:100%;
+  max-width:480px;
+
+  background:
+    linear-gradient(
+      168deg,
+      var(--plate) 0%,
+      var(--plate-2) 58%,
+      #eef7fc 100%
+    );
+
+  border:1px solid var(--line-hi);
+  border-radius:var(--r);
+
+  padding:
+    0
+    var(--pad)
+    clamp(18px,5vw,26px);
+
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.95) inset,
+    0 40px 80px -40px rgba(7,110,181,.25),
+    0 2px 30px rgba(7,110,181,.08);
+
+  overflow:hidden;
+}
+
+
+/* Üst mavi çizgi */
+
+.card::before{
+  content:"";
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+
+  height:3px;
+
+  background:var(--sheen);
+  background-size:220% 100%;
+
+  animation:sweep 9s linear infinite;
+}
+
+@keyframes sweep{
+  to{
+    background-position:220% 0;
+  }
+}
+
+
+/* Marka */
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  padding:
+    clamp(20px,5vw,26px)
+    0
+    clamp(16px,4vw,22px);
+}
+
+.mark{
+  font-size:12px;
+  letter-spacing:.34em;
+  font-weight:600;
+  white-space:nowrap;
+
+  background:var(--sheen);
+  background-size:200% 100%;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+
+  animation:sweep 9s linear infinite;
+}
+
+.hair{
+  flex:1;
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--line-hi),
+      transparent
+    );
+}
+
+.kicker{
+  font-size:9.5px;
+  letter-spacing:.24em;
+  color:var(--muted);
+
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+
+/* Başlık */
+
+.lede{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:300;
+
+  font-size:
+    clamp(26px,7.4vw,34px);
+
+  line-height:1.06;
+  letter-spacing:-.02em;
+
+  margin:0 0 10px;
+
+  color:var(--text);
+}
+
+.lede b{
+  font-weight:600;
+
+  background:var(--sheen);
+  background-size:200% 100%;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+
+  animation:sweep 9s linear infinite;
+}
+
+
+/* Açıklama */
+
+.sub{
+  font-size:12.5px;
+  line-height:1.7;
+  color:var(--muted);
+
+  margin:0 0 4px;
+  max-width:38ch;
+}
+
+
+/* Ayırıcı */
+
+.sep{
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--line-hi) 18%,
+      var(--line-hi) 82%,
+      transparent
+    );
+
+  margin:
+    clamp(18px,5vw,24px)
+    0
+    2px;
+}
+
+
+/* Personel */
+
+nav{
+  display:flex;
+  flex-direction:column;
+}
+
+.person{
+  display:flex;
+  align-items:center;
+  gap:15px;
+
+  min-height:64px;
+  padding:17px 2px;
+
+  text-decoration:none;
+  color:inherit;
+
+  border-bottom:1px solid var(--line);
+
+  position:relative;
+
+  -webkit-tap-highlight-color:transparent;
+
+  transition:
+    padding-left .35s cubic-bezier(.22,1,.36,1);
+}
+
+.person:last-of-type{
+  border-bottom:0;
+}
+
+.person::after{
+  content:"";
+
+  position:absolute;
+
+  left:calc(-1 * var(--pad));
+  right:calc(-1 * var(--pad));
+
+  top:0;
+  bottom:0;
+
+  z-index:-1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7,110,181,.08),
+      transparent 70%
+    );
+
+  opacity:0;
+
+  transition:opacity .3s ease;
+}
+
+
+/* Monogram */
+
+.mono{
+  width:46px;
+  height:46px;
+
+  flex:none;
+
+  border-radius:12px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid rgba(7,110,181,.20);
+
+  font-family:"Fraunces",Georgia,serif;
+  font-size:15px;
+
+  color:var(--blue);
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      var(--blue-light)
+    );
+
+  box-shadow:
+    0 5px 15px rgba(7,110,181,.08);
+}
+
+
+/* Personel adı */
+
+.pn{
+  font-size:
+    clamp(15px,4.2vw,16px);
+
+  letter-spacing:.01em;
+  display:block;
+
+  color:var(--text);
+}
+
+.pt{
+  font-size:10px;
+  letter-spacing:.14em;
+
+  text-transform:uppercase;
+
+  color:var(--muted);
+
+  margin-top:4px;
+
+  display:block;
+  line-height:1.5;
+}
+
+
+/* Ok */
+
+.person .go{
+  margin-left:auto;
+
+  width:15px;
+  height:15px;
+
+  color:var(--blue);
+
+  opacity:0;
+
+  transform:translateX(-6px);
+
+  transition:
+    .35s cubic-bezier(.22,1,.36,1);
+}
+
+
+/* Footer */
+
+.foot{
+  margin-top:
+    clamp(16px,4vw,22px);
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.foot a{
+  text-transform:none;
+  letter-spacing:.1em;
+  font-size:10.5px;
+
+  color:var(--muted);
+  text-decoration:none;
+
+  transition:color .25s ease;
+}
+
+
+/* Animasyon */
+
+.reveal{
+  opacity:0;
+  transform:translateY(14px);
+
+  animation:
+    rise .85s cubic-bezier(.22,1,.36,1)
+    forwards;
+}
+
+@keyframes rise{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+
+/* Desktop */
+
+@media (hover:hover) and (pointer:fine){
+
+  .person:hover{
+    padding-left:8px;
+  }
+
+  .person:hover::after{
+    opacity:1;
+  }
+
+  .person:hover .go{
+    opacity:.75;
+    transform:none;
+  }
+
+  .foot a:hover{
+    color:var(--blue);
+  }
+}
+
+
+/* Küçük telefon */
+
+@media (max-width:360px){
+
+  :root{
+    --pad:18px;
+    --r:18px;
+  }
+
+  .kicker{
+    display:none;
+  }
+
+  .mono{
+    width:40px;
+    height:40px;
+    font-size:13px;
+  }
+}
+
+
+/* Tablet */
+
+@media (min-width:600px){
+
+  .card{
+    max-width:500px;
+  }
+}
+
+
+/* Masaüstü */
+
+@media (min-width:900px){
+
+  .card{
+    max-width:560px;
+
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.95) inset,
+      0 45px 90px -45px rgba(7,110,181,.28),
+      0 4px 35px rgba(7,110,181,.10);
+  }
+
+  .foot{
+    border-top:1px solid var(--line);
+    padding-top:18px;
+  }
+}
+
+
+/* Yatay telefon */
+
+@media (max-height:520px) and (orientation:landscape){
+
+  body{
+    padding-block:14px;
+  }
+
+  .brand{
+    padding:16px 0 12px;
+  }
+
+  .lede{
+    font-size:24px;
+  }
+
+  .person{
+    min-height:46px;
+    padding:10px 2px;
+  }
+
+  .mono{
+    width:38px;
+    height:38px;
+  }
+}
+
+
+/* Hareket azalt */
+
+@media (prefers-reduced-motion:reduce){
+
+  .reveal{
+    animation:none;
+    opacity:1;
+    transform:none;
+  }
+
+  .card::before,
+  .mark,
+  .lede b{
+    animation:none;
+  }
+
+  *{
+    transition-duration:.01ms!important;
+  }
+}
